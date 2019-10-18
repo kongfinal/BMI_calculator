@@ -9,7 +9,7 @@ import android.view.*
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
-import com.example.android.navigation.databinding.FragmentTitleBinding
+import com.example.bmicalculator.databinding.FragmentTitleBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ class TitleFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater,
-            R.layout.fragment_title,false)
+            R.layout.fragment_title,container,false)
         return binding.root
     }
 
