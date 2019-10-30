@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/navigation" app:startDestination="@id/titleFragment">
+
+    <fragment android:id="@+id/titleFragment" android:name="com.example.bmicalculator.TitleFragment"
+              android:label="TitleFragment">
+        <action android:id="@+id/action_titleFragment_to_bmiCalculatoFragment"
+                app:destination="@id/bmiCalculatoFragment" app:popUpTo="@+id/titleFragment"
+        />
+    </fragment>
+    <fragment android:id="@+id/bmiCalculatoFragment" android:name="com.example.bmicalculator.bmiCalculatoFragment"
+              android:label="bmiCalculatoFragment">
+        <action android:id="@+id/action_bmiCalculatoFragment_to_bmiResultFragment"
+                app:destination="@id/bmiResultFragment"
+                app:popUpTo="@+id/bmiCalculatoFragment"/>
+        <action android:id="@+id/action_bmiCalculatoFragment_to_lmrCalculatorFragment"
+                app:destination="@id/lmrCalculatorFragment" app:popUpTo="@+id/bmiCalculatoFragment"
+        />
+        <action android:id="@+id/action_bmiCalculatoFragment_to_bmrCalculatorFragment"
+                app:destination="@id/bmrCalculatorFragment" app:popUpTo="@+id/bmiCalculatoFragment"
+        />
+        <argument android:name="name" app:argType="string"/>
+    </fragment>
+    <fragment android:id="@+id/bmiResultFragment" android:name="com.example.bmicalculator.bmiResultFragment"
+              android:label="bmiResultFragment">
+        <action android:id="@+id/action_bmiResultFragment_to_bmiCalculatoFragment"
+                app:destination="@id/bmiCalculatoFragment" app:popUpTo="@+id/bmiResultFragment"
+        />
+        <action android:id="@+id/action_bmiResultFragment_to_bmrResultFragment"
+                app:destination="@id/bmrResultFragment" app:popUpTo="@+id/bmiResultFragment"/>
+        <action android:id="@+id/action_bmiResultFragment_to_lmrResultFragment"
+                app:destination="@id/lmrResultFragment" app:popUpTo="@+id/bmiResultFragment"/>
+    </fragment>
+    <fragment android:id="@+id/bmrCalculatorFragment" android:name="com.example.bmicalculator.bmrCalculatorFragment"
+              android:label="bmrCalculatorFragment">
+        <action android:id="@+id/action_bmrCalculatorFragment_to_bmiCalculatoFragment"
+                app:destination="@id/bmiCalculatoFragment" app:popUpTo="@+id/bmrCalculatorFragment"
+        />
+        <action android:id="@+id/action_bmrCalculatorFragment_to_bmrResultFragment"
+                app:destination="@id/bmrResultFragment" app:popUpTo="@+id/bmrCalculatorFragment"
+        />
+        <action android:id="@+id/action_bmrCalculatorFragment_to_lmrCalculatorFragment"
+                app:destination="@id/lmrCalculatorFragment" app:popUpTo="@+id/bmrCalculatorFragment"
+        />
+    </fragment>
+    <fragment android:id="@+id/lmrCalculatorFragment" android:name="com.example.bmicalculator.lmrCalculatorFragment"
+              android:label="lmrCalculatorFragment">
+        <action android:id="@+id/action_lmrCalculatorFragment_to_bmrCalculatorFragment"
+                app:destination="@id/bmrCalculatorFragment" app:popUpTo="@+id/lmrCalculatorFragment"
+        />
+        <action android:id="@+id/action_lmrCalculatorFragment_to_bmiCalculatoFragment"
+                app:destination="@id/bmiCalculatoFragment" app:popUpTo="@+id/lmrCalculatorFragment"
+        />
+        <action android:id="@+id/action_lmrCalculatorFragment_to_lmrResultFragment"
+                app:destination="@id/lmrResultFragment" app:popUpTo="@+id/lmrCalculatorFragment"
+        />
+    </fragment>
+    <fragment android:id="@+id/bmrResultFragment" android:name="com.example.bmicalculator.BmrResultFragment"
+              android:label="BmrResultFragment">
+        <action android:id="@+id/action_bmrResultFragment_to_bmrCalculatorFragment"
+                app:destination="@id/bmrCalculatorFragment" app:popUpTo="@+id/bmrResultFragment"
+        />
+        <action android:id="@+id/action_bmrResultFragment_to_bmiResultFragment"
+                app:destination="@id/bmiResultFragment" app:popUpTo="@+id/bmrResultFragment"/>
+        <action android:id="@+id/action_bmrResultFragment_to_lmrResultFragment"
+                app:destination="@id/lmrResultFragment" app:popUpTo="@+id/bmrResultFragment"/>
+    </fragment>
+    <fragment android:id="@+id/lmrResultFragment" android:name="com.example.bmicalculator.lmrResultFragment"
+              android:label="lmrResultFragment">
+        <action android:id="@+id/action_lmrResultFragment_to_lmrCalculatorFragment"
+                app:destination="@id/lmrCalculatorFragment" app:popUpTo="@+id/lmrResultFragment"
+        />
+        <action android:id="@+id/action_lmrResultFragment_to_bmrResultFragment"
+                app:destination="@id/bmrResultFragment" app:popUpTo="@+id/lmrResultFragment"/>
+        <action android:id="@+id/action_lmrResultFragment_to_bmiResultFragment"
+                app:destination="@id/bmiResultFragment" app:popUpTo="@+id/lmrResultFragment"/>
+    </fragment>
+    <fragment android:id="@+id/aboutFragment" android:name="com.example.bmicalculator.aboutFragment"
+              android:label="aboutFragment"/>
+</navigation>

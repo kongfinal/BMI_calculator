@@ -9,6 +9,8 @@ import android.view.*
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.bmicalculator.databinding.FragmentTitleBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -21,12 +23,32 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class TitleFragment : Fragment() {
+    private var username = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater,
             R.layout.fragment_title,container,false)
+        binding.playButton.setOnClickListener{ view : View ->
+            username = binding.editName.getText().toString()
+            if(!(username.equals(""))){
+                view.findNavController().
+                    navigate(TitleFragmentDirections.actionTitleFragmentToBmiCalculatoFragment(username))
+            }
+
+            //view.findNavController().navigate(R.id.action_titleFragment_to_bmiCalculatoFragment)
+        }
+        setHasOptionsMenu(true)
         return binding.root
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.options_menu, menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(item!!,
+            view!!.findNavController())
+                || super.onOptionsItemSelected(item)
+    }
 }

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <ImageView
+                        android:layout_width="171dp"
+                        android:layout_height="90dp" app:srcCompat="@drawable/bmi_calculator_about"
+                        android:id="@+id/imageView"
+                        android:layout_marginTop="24dp"
+                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+                        app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"/>
+                <TextView
+                        android:text="About"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginLeft="176dp" android:layout_marginStart="176dp"
+                        app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="176dp"
+                        android:layout_marginRight="176dp" android:layout_marginTop="16dp" android:textSize="30sp"
+                        android:textColor="#050505"/>
+                <TextView
+                        android:text="ค่าดัชนีมวลกาย คืออะไร ?"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView4"
+                        app:layout_constraintTop_toBottomOf="@+id/textView" android:layout_marginTop="24dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:textColor="#9C27B0"
+                        android:textSize="18sp" android:textStyle="bold"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView5"
+                        app:layout_constraintTop_toBottomOf="@+id/textView4"
+                        app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp" android:textSize="18sp"
+                        android:text="ค่าดัชนีมวลกาย (Body Mass Index : BMI) เป็นมาตรการที่ใช้ประเมินภาวะอ้วน และผอมในผู้ใหญ่ ตั้งแต่อายุ 20 ปีขึ้นไป สามารถทำได้โดยการชั่งน้ำหนักตัวเป็นกิโลกรัม และวัดส่วนสูงเป็นเซนติเมตร"
+                        app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"
+                        android:layout_marginEnd="8dp" android:textStyle="normal" android:layout_marginTop="8dp"
+                        android:textColor="#0A0A0A"/>
+                <TextView
+                        android:text="ค่าอัตราการเผาผลาญพลังของร่างกาย คืออะไร ?"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView6"
+                        app:layout_constraintTop_toBottomOf="@+id/textView5" android:layout_marginTop="32dp"
+                        app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp" android:textSize="18sp" android:textStyle="bold"
+                        android:textColor="#9C27B0"/>
+                <TextView
+                        android:text="ค่าอัตราการเผาผลาญพลังของร่างกาย (Basal Metabolic Rate : BMR) เป็นความต้องการเผาผลาญ ของร่างกายในชีวิตประจำวันหรือจำนวนแคลอรี่ขั้นต่ำที่ต้องการใช้ในชีวิตแต่ละวัน  ดังนั้นการคำนวณ BMR จะช่วยให้คุณคำนวณปริมาณแคลอรี่ที่ใช้ต่อวันเพื่อรักษาน้ำหนักปัจจุบันได้"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView7"
+                        app:layout_constraintTop_toBottomOf="@+id/textView6" android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginRight="8dp" android:layout_marginEnd="8dp" android:textSize="18sp"
+                        android:textColor="#090808"/>
+                <TextView
+                        android:text="นํ้าหนักตัวที่ไม่รวมไขมัน คืออะไร ?"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView8" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+                        app:layout_constraintTop_toBottomOf="@+id/textView7" android:layout_marginTop="32dp"
+                        android:textSize="18sp" android:textStyle="bold" android:textColor="#9C27B0"/>
+                <TextView
+                        android:text="นํ้าหนักตัวที่ไม่รวมไขมัน (lean body weight : LBW) เป็นนํ้าหนักของร่างกายที่ประกอบด้วยมวลของ เซลล์ต่างๆของร่างกายที่ไม่มีไขมันเป็นองค์ประกอบ เช่น กระดูกและเอ็น"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView9" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+                        app:layout_constraintTop_toBottomOf="@+id/textView8" android:layout_marginTop="8dp"
+                        android:textSize="18sp" android:textColor="#090808" app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginRight="8dp" android:layout_marginEnd="8dp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>

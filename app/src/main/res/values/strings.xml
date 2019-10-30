@@ -3,4 +3,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="share_bmi_text">ค่าดัชนีมวลกาย : %1$s \nคุณอยู่ในเกณฑ์ : %2$s!</string>
+    <string name="share_bmr_text">ร่างกายคุณต้องการพลังงาน : %1$s แคลอรี่/วัน</string>
+    <string name="share_lbw_text">น้ำหนักร่างกายมาตรฐาน : %1$s กิโลกรัม \nน้ำหนักไขมัน : %2$s เปอร์เซ็นต์ \nคุณอยู่ในเกณฑ์ : %3$s!</string>
+    <string name="share">Share</string>
 </resources>
