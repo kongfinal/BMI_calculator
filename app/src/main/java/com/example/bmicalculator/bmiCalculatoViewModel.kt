@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.example.bmicalculator.database.BMI
+import kotlinx.coroutines.launch
 
 class bmiCalculatoViewModel : ViewModel() {
     var bmiCost = MutableLiveData<String>()
@@ -25,6 +27,16 @@ class bmiCalculatoViewModel : ViewModel() {
     var statusHeight = false
     var statusWeight = false
 
+    private var _showSnackbarHeight = MutableLiveData<Boolean>()
+
+    val showSnackBarHeight: LiveData<Boolean>
+        get() = _showSnackbarHeight
+
+    private var _showSnackbarWeight = MutableLiveData<Boolean>()
+
+    val showSnackBarWeight: LiveData<Boolean>
+        get() = _showSnackbarWeight
+
     init {
 
         Log.i("bmiCalculatoViewModel", "bmiCalculatoViewModel created!")
@@ -41,6 +53,14 @@ class bmiCalculatoViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         Log.i("bmiCalculatoViewModel", "bmiCalculatoViewModel destroyed!")
+    }
+
+    fun doneShowingSnackbarHeight() {
+        _showSnackbarHeight.value = false
+    }
+
+    fun doneShowingSnackbarWeight() {
+        _showSnackbarWeight.value = false
     }
 
     fun setBmiCost(cost: String): String? {
@@ -80,6 +100,10 @@ class bmiCalculatoViewModel : ViewModel() {
             bmiDouble.value = weightDouble.value.toString().toDouble() / Math.pow(((heightDouble.value.toString().toDouble())/100),2.0);
             setBmiCost(String.format("%.2f", bmiDouble.value))
             setBmiCriterion()
+        }else if(statusHeight == false){
+            _showSnackbarHeight.value = true
+        }else if(statusWeight == false){
+            _showSnackbarWeight.value = true
         }
     }
 
@@ -96,4 +120,5 @@ class bmiCalculatoViewModel : ViewModel() {
             setBmiCriterion("อ้วนมาก")
         }
     }
+
 }

@@ -8,11 +8,13 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.example.bmicalculator.databinding.FragmentBmrCalculatorBinding
+import com.google.android.material.snackbar.Snackbar
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,10 +28,14 @@ private const val ARG_PARAM2 = "param2"
 class bmrCalculatorFragment : Fragment() {
 
     private lateinit var viewModel: bmrCalculatorViewModel
+    private var username = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<FragmentBmrCalculatorBinding>(inflater,
             R.layout.fragment_bmr_calculator,container,false)
+
+        val args = bmrCalculatorFragmentArgs.fromBundle(arguments!!)
+        username = args.name
 
         Log.i("bmrCalculatorViewModel", "Called ViewModelProviders.of")
         viewModel = ViewModelProviders.of(this).get(bmrCalculatorViewModel::class.java)
@@ -49,19 +55,19 @@ class bmrCalculatorFragment : Fragment() {
 
         binding.BMIButton.setOnClickListener{ view : View ->
             //view.findNavController().navigate(R.id.action_bmrCalculatorFragment_to_bmiCalculatoFragment)
-            view.findNavController().navigate(bmrCalculatorFragmentDirections.actionBmrCalculatorFragmentToBmiCalculatoFragment("no show"))
+            view.findNavController().navigate(bmrCalculatorFragmentDirections.actionBmrCalculatorFragmentToBmiCalculatoFragment(username))
         }
         binding.BMRButton.setOnClickListener{
             binding.BMRButton.setChecked(true)
         }
         binding.LBWButton.setOnClickListener{ view : View ->
             //view.findNavController().navigate(R.id.action_bmrCalculatorFragment_to_lmrCalculatorFragment)
-            view.findNavController().navigate(bmrCalculatorFragmentDirections.actionBmrCalculatorFragmentToLmrCalculatorFragment())
+            view.findNavController().navigate(bmrCalculatorFragmentDirections.actionBmrCalculatorFragmentToLmrCalculatorFragment(username))
         }
 
         binding.tableButton.setOnClickListener{ view : View ->
             //view.findNavController().navigate(R.id.action_bmrCalculatorFragment_to_bmrResultFragment)
-            view.findNavController().navigate(bmrCalculatorFragmentDirections.actionBmrCalculatorFragmentToBmrResultFragment())
+            view.findNavController().navigate(bmrCalculatorFragmentDirections.actionBmrCalculatorFragmentToBmrResultFragment(username))
         }
 
         fun ClickAsButtonToTrueInHeight(){
@@ -442,9 +448,42 @@ class bmrCalculatorFragment : Fragment() {
             height = false
             checkAsButton = true
 
-            viewModel.setHeightString(binding.editHeight.getText().toString())
-            viewModel.setWeightString(binding.editWeight.getText().toString())
             viewModel.setAgeString(binding.editAge.getText().toString())
+            viewModel.showSnackBarAge.observe(this, Observer {
+                if (it == true) {
+                    Snackbar.make(
+                        activity!!.findViewById(android.R.id.content),
+                        getString(R.string.snack_age_message),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                    viewModel.doneShowingSnackbarAge()
+                }
+            })
+
+            viewModel.setHeightString(binding.editHeight.getText().toString())
+            viewModel.showSnackBarHeight.observe(this, Observer {
+                if (it == true) {
+                    Snackbar.make(
+                        activity!!.findViewById(android.R.id.content),
+                        getString(R.string.snack_height_message),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                    viewModel.doneShowingSnackbarHeight()
+                }
+            })
+
+            viewModel.setWeightString(binding.editWeight.getText().toString())
+            viewModel.showSnackBarWeight.observe(this, Observer {
+                if (it == true) {
+                    Snackbar.make(
+                        activity!!.findViewById(android.R.id.content),
+                        getString(R.string.snack_weight_message),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                    viewModel.doneShowingSnackbarWeight()
+                }
+            })
+
             viewModel.calcutator(gender)
 
             viewModel.bmrDouble.observe(this, Observer { bmrDouble ->

@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.bmicalculator.databinding.FragmentTitleBinding
+import com.google.android.material.snackbar.Snackbar
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +24,8 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class TitleFragment : Fragment() {
+
+    //private lateinit var viewModel: TitleViewModel
     private var username = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -33,6 +36,12 @@ class TitleFragment : Fragment() {
             if(!(username.equals(""))){
                 view.findNavController().
                     navigate(TitleFragmentDirections.actionTitleFragmentToBmiCalculatoFragment(username))
+            }else{
+                Snackbar.make(
+                    activity!!.findViewById(android.R.id.content),
+                    getString(R.string.snack_name_message),
+                    Snackbar.LENGTH_SHORT
+                ).show()
             }
 
             //view.findNavController().navigate(R.id.action_titleFragment_to_bmiCalculatoFragment)

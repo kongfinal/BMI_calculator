@@ -26,6 +26,7 @@ private const val ARG_PARAM2 = "param2"
 class bmiResultFragment : Fragment() {
 
     private lateinit var viewModel: bmiResultViewModel
+    private var username = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<FragmentBmiResultBinding>(inflater,
@@ -33,6 +34,9 @@ class bmiResultFragment : Fragment() {
 
         Log.i("bmiResultViewModel", "Called ViewModelProviders.of")
         viewModel = ViewModelProviders.of(this).get(bmiResultViewModel::class.java)
+
+        val args = bmiResultFragmentArgs.fromBundle(arguments!!)
+        username = args.name
 
         binding.BMIButton.setChecked(true)
         binding.BMRButton.setChecked(false)
@@ -43,17 +47,17 @@ class bmiResultFragment : Fragment() {
         }
         binding.BMRButton.setOnClickListener{ view : View ->
             //view.findNavController().navigate(R.id.action_bmiResultFragment_to_bmrResultFragment)
-            view.findNavController().navigate(bmiResultFragmentDirections.actionBmiResultFragmentToBmrResultFragment())
+            view.findNavController().navigate(bmiResultFragmentDirections.actionBmiResultFragmentToBmrResultFragment(username))
         }
         binding.LBWButton.setOnClickListener{ view : View ->
             //view.findNavController().navigate(R.id.action_bmiResultFragment_to_lmrResultFragment)
-            view.findNavController().navigate(bmiResultFragmentDirections.actionBmiResultFragmentToLmrResultFragment())
+            view.findNavController().navigate(bmiResultFragmentDirections.actionBmiResultFragmentToLmrResultFragment(username))
         }
 
 
         binding.homeButton.setOnClickListener{ view : View ->
             //view.findNavController().navigate(R.id.action_bmiResultFragment_to_bmiCalculatoFragment)
-            view.findNavController().navigate(bmiResultFragmentDirections.actionBmiResultFragmentToBmiCalculatoFragment("no show"))
+            view.findNavController().navigate(bmiResultFragmentDirections.actionBmiResultFragmentToBmiCalculatoFragment(username))
         }
 
 

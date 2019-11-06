@@ -26,6 +26,7 @@ private const val ARG_PARAM2 = "param2"
 class lmrResultFragment : Fragment() {
 
     private lateinit var viewModel: lmrResultViewModel
+    private var username = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<FragmentLmrResultBinding>(inflater,
@@ -34,16 +35,19 @@ class lmrResultFragment : Fragment() {
         Log.i("lmrResultViewModel", "Called ViewModelProviders.of")
         viewModel = ViewModelProviders.of(this).get(lmrResultViewModel::class.java)
 
+        val args = lmrResultFragmentArgs.fromBundle(arguments!!)
+        username = args.name
+
         binding.BMIButton.setChecked(false)
         binding.BMRButton.setChecked(false)
         binding.LBWButton.setChecked(true)
 
         binding.BMIButton.setOnClickListener{view : View ->
             //view.findNavController().navigate(R.id.action_lmrResultFragment_to_bmiResultFragment)
-            view.findNavController().navigate(lmrResultFragmentDirections.actionLmrResultFragmentToBmiResultFragment())
+            view.findNavController().navigate(lmrResultFragmentDirections.actionLmrResultFragmentToBmiResultFragment(username))
         }
         binding.BMRButton.setOnClickListener{ view : View ->
-            view.findNavController().navigate(lmrResultFragmentDirections.actionLmrResultFragmentToBmrResultFragment())
+            view.findNavController().navigate(lmrResultFragmentDirections.actionLmrResultFragmentToBmrResultFragment(username))
         }
         binding.LBWButton.setOnClickListener{ view : View ->
             binding.LBWButton.setChecked(true)
@@ -51,7 +55,7 @@ class lmrResultFragment : Fragment() {
 
         binding.tableButton.setOnClickListener{ view : View ->
             //view.findNavController().navigate(R.id.action_lmrResultFragment_to_lmrCalculatorFragment)
-            view.findNavController().navigate(lmrResultFragmentDirections.actionLmrResultFragmentToLmrCalculatorFragment())
+            view.findNavController().navigate(lmrResultFragmentDirections.actionLmrResultFragmentToLmrCalculatorFragment(username))
         }
 
         setHasOptionsMenu(true)

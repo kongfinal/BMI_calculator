@@ -10,6 +10,7 @@ import org.junit.Test
 
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.runner.RunWith
 import java.io.IOException
 
 /**
@@ -17,6 +18,7 @@ import java.io.IOException
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
+//@RunWith(AndroidJUnit4::class)
 class ExampleUnitTest {
     private lateinit var bmiDao: BMIDao
     private lateinit var db: BMIDatabase

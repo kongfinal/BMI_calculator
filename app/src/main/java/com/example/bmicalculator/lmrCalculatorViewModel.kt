@@ -1,6 +1,7 @@
 package com.example.bmicalculator
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -21,6 +22,16 @@ class lmrCalculatorViewModel : ViewModel() {
     var statusHeight = false
     var statusWeight = false
 
+    private var _showSnackbarHeight = MutableLiveData<Boolean>()
+
+    val showSnackBarHeight: LiveData<Boolean>
+        get() = _showSnackbarHeight
+
+    private var _showSnackbarWeight = MutableLiveData<Boolean>()
+
+    val showSnackBarWeight: LiveData<Boolean>
+        get() = _showSnackbarWeight
+
     init {
         Log.i("lmrCalculatorViewModel", "lmrCalculatorViewModel created!")
          lbwCost.value = ""
@@ -39,6 +50,14 @@ class lmrCalculatorViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         Log.i("lmrCalculatorViewModel", "lmrCalculatorViewModel destroyed!")
+    }
+
+    fun doneShowingSnackbarHeight() {
+        _showSnackbarHeight.value = false
+    }
+
+    fun doneShowingSnackbarWeight() {
+        _showSnackbarWeight.value = false
     }
 
     fun setHeightString(height: String){
@@ -62,20 +81,26 @@ class lmrCalculatorViewModel : ViewModel() {
     }
 
     fun calcutator(gender: String) {
-        if(gender.equals("Female")){
-            lbwDouble.value = (1.07 * weightDouble.value.toString().toDouble()) -
-                    (148 * ( (weightDouble.value.toString().toDouble() * weightDouble.value.toString().toDouble()) / Math.pow((heightDouble.value.toString().toDouble()),2.0)));
-            FatCost.value = ((weightDouble.value.toString().toDouble() - lbwDouble.value.toString().toDouble())/weightDouble.value.toString().toDouble())*100
-            lbwCost.value = String.format("%.1f", lbwDouble.value)
-            FatWCost.value = String.format("%.1f", FatCost.value)
-        }else{
-            lbwDouble.value = (1.10 * weightDouble.value.toString().toDouble()) -
-                    (128 * ( (weightDouble.value.toString().toDouble() * weightDouble.value.toString().toDouble()) /Math.pow((heightDouble.value.toString().toDouble()),2.0)));
-            FatCost.value = ((weightDouble.value.toString().toDouble() - lbwDouble.value.toString().toDouble())/weightDouble.value.toString().toDouble())*100
-            lbwCost.value = String.format("%.1f", lbwDouble.value)
-             FatWCost.value = String.format("%.1f", FatCost.value)
+        if(statusHeight == true && statusWeight == true){
+            if(gender.equals("Female")){
+                lbwDouble.value = (1.07 * weightDouble.value.toString().toDouble()) -
+                        (148 * ( (weightDouble.value.toString().toDouble() * weightDouble.value.toString().toDouble()) / Math.pow((heightDouble.value.toString().toDouble()),2.0)));
+                FatCost.value = ((weightDouble.value.toString().toDouble() - lbwDouble.value.toString().toDouble())/weightDouble.value.toString().toDouble())*100
+                lbwCost.value = String.format("%.1f", lbwDouble.value)
+                FatWCost.value = String.format("%.1f", FatCost.value)
+            }else{
+                lbwDouble.value = (1.10 * weightDouble.value.toString().toDouble()) -
+                        (128 * ( (weightDouble.value.toString().toDouble() * weightDouble.value.toString().toDouble()) /Math.pow((heightDouble.value.toString().toDouble()),2.0)));
+                FatCost.value = ((weightDouble.value.toString().toDouble() - lbwDouble.value.toString().toDouble())/weightDouble.value.toString().toDouble())*100
+                lbwCost.value = String.format("%.1f", lbwDouble.value)
+                FatWCost.value = String.format("%.1f", FatCost.value)
+            }
+        }else if(statusHeight == false){
+            _showSnackbarHeight.value = true
+        }else if(statusWeight == false) {
+            _showSnackbarWeight.value = true
         }
-        setBmiCriterion(gender)
+            setBmiCriterion(gender)
     }
 
     fun setBmiCriterion(gender: String) {

@@ -18,7 +18,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import com.example.bmicalculator.database.BMIDatabase
+import com.example.bmicalculator.databaseViewModel.BMIdatabaseViewModel
+import com.example.bmicalculator.databaseViewModel.BMIdatabaseViewModelFactory
 import com.example.bmicalculator.databinding.FragmentBmiCalculatoBinding
+import com.google.android.material.snackbar.Snackbar
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,13 +36,28 @@ private const val ARG_PARAM2 = "param2"
 class bmiCalculatoFragment : Fragment() {
 
     private lateinit var viewModel: bmiCalculatoViewModel
+    private lateinit var databaseViewModel: BMIdatabaseViewModel
+    private var username = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding = DataBindingUtil.inflate<FragmentBmiCalculatoBinding>(inflater,
+        val binding:FragmentBmiCalculatoBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_bmi_calculato,container,false)
+
+        val application = requireNotNull(this.activity).application
+
+        val dataSource = BMIDatabase.getInstance(application).BMIDao
+        val viewModelFactory = BMIdatabaseViewModelFactory(dataSource, application)
+
+        val bmiDatabaseViewModel =
+            ViewModelProviders.of(
+                this, viewModelFactory).get(BMIdatabaseViewModel::class.java)
+
+        binding.setLifecycleOwner(this)
+        binding.bmIdatabaseViewModel = bmiDatabaseViewModel
 
         val args = bmiCalculatoFragmentArgs.fromBundle(arguments!!)
         Toast.makeText(context, "Username: ${args.name}", Toast.LENGTH_LONG).show()
+        username = args.name
 
         Log.i("bmiCalculatoViewModel", "Called bmiCalculatoViewModel.of")
         viewModel = ViewModelProviders.of(this).get(bmiCalculatoViewModel::class.java)
@@ -58,17 +77,17 @@ class bmiCalculatoFragment : Fragment() {
         }
         binding.BMRButton.setOnClickListener{ view : View ->
             //view.findNavController().navigate(R.id.action_bmiCalculatoFragment_to_bmrCalculatorFragment)
-            view.findNavController().navigate(bmiCalculatoFragmentDirections.actionBmiCalculatoFragmentToBmrCalculatorFragment())
+            view.findNavController().navigate(bmiCalculatoFragmentDirections.actionBmiCalculatoFragmentToBmrCalculatorFragment(username))
         }
         binding.LBWButton.setOnClickListener{ view : View ->
             //view.findNavController().navigate(R.id.action_bmiCalculatoFragment_to_lmrCalculatorFragment)
             view.findNavController().
-                navigate(bmiCalculatoFragmentDirections.actionBmiCalculatoFragmentToLmrCalculatorFragment())
+                navigate(bmiCalculatoFragmentDirections.actionBmiCalculatoFragmentToLmrCalculatorFragment(username))
         }
 
         binding.tableButton.setOnClickListener{ view : View ->
             //view.findNavController().navigate(R.id.action_bmiCalculatoFragment_to_bmiResultFragment)
-            view.findNavController().navigate(bmiCalculatoFragmentDirections.actionBmiCalculatoFragmentToBmiResultFragment())
+            view.findNavController().navigate(bmiCalculatoFragmentDirections.actionBmiCalculatoFragmentToBmiResultFragment(username))
         }
 
         fun ClickAsButtonToTrueInHeight(){
@@ -327,7 +346,29 @@ class bmiCalculatoFragment : Fragment() {
             checkAsButton = true
 
             viewModel.setHeightString(binding.editHeight.getText().toString())
+            viewModel.showSnackBarHeight.observe(this, Observer {
+                if (it == true) {
+                    Snackbar.make(
+                        activity!!.findViewById(android.R.id.content),
+                        getString(R.string.snack_height_message),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                    viewModel.doneShowingSnackbarHeight()
+                }
+            })
+
             viewModel.setWeightString(binding.editWeight.getText().toString())
+            viewModel.showSnackBarWeight.observe(this, Observer {
+                if (it == true) {
+                    Snackbar.make(
+                        activity!!.findViewById(android.R.id.content),
+                        getString(R.string.snack_weight_message),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                    viewModel.doneShowingSnackbarWeight()
+                }
+            })
+
             viewModel.calcutator();
 
             viewModel.bmiDouble.observe(this, Observer { bmiDouble ->
@@ -343,13 +384,20 @@ class bmiCalculatoFragment : Fragment() {
                 binding.BMICriterionText.visibility = View.VISIBLE
                 binding.BMICost.visibility = View.VISIBLE
                 binding.BMICriterionResult.visibility = View.VISIBLE
+//                databaseViewModel
+//                    .onStartCalculator(username,
+//                        viewModel.weightDouble.toString().toDouble(),
+//                        viewModel.heightDouble.toString().toDouble(),
+//                        viewModel.bmiDouble.value.toString().toDouble(),
+//                        viewModel.bmiCriterion.value.toString()
+//                    )
             }
-
 
         }
 
         setHasOptionsMenu(true)
         Log.i("bmiCalculatoFragment", "onCreateView called")
+        //databaseViewModel.onStartTracking()
         return binding.root
     }
 

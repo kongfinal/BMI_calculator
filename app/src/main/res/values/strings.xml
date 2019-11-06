@@ -6,5 +6,9 @@
     <string name="share_bmi_text">ค่าดัชนีมวลกาย : %1$s \nคุณอยู่ในเกณฑ์ : %2$s!</string>
     <string name="share_bmr_text">ร่างกายคุณต้องการพลังงาน : %1$s แคลอรี่/วัน</string>
     <string name="share_lbw_text">น้ำหนักร่างกายมาตรฐาน : %1$s กิโลกรัม \nน้ำหนักไขมัน : %2$s เปอร์เซ็นต์ \nคุณอยู่ในเกณฑ์ : %3$s!</string>
+    <string name="snack_name_message">กรุณาใส่ name</string>
+    <string name="snack_height_message">กรุณาใส่ความสูง</string>
+    <string name="snack_weight_message">กรุณาใส่น้ำหนัก</string>
+    .<string name="snack_age_message">กรุณาใส่อายุ</string>
     <string name="share">Share</string>
 </resources>

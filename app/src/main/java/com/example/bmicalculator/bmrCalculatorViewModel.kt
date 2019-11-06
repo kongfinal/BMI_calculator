@@ -1,6 +1,7 @@
 package com.example.bmicalculator
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -21,6 +22,21 @@ class bmrCalculatorViewModel : ViewModel() {
     var statusWeight = false
     var statusAge = false
 
+    private var _showSnackbarHeight = MutableLiveData<Boolean>()
+
+    val showSnackBarHeight: LiveData<Boolean>
+        get() = _showSnackbarHeight
+
+    private var _showSnackbarWeight = MutableLiveData<Boolean>()
+
+    val showSnackBarWeight: LiveData<Boolean>
+        get() = _showSnackbarWeight
+
+    private var _showSnackbarAge = MutableLiveData<Boolean>()
+
+    val showSnackBarAge : LiveData<Boolean>
+        get() = _showSnackbarAge
+
     init {
         Log.i("bmrCalculatorViewModel", "bmrCalculatorViewModel created!")
          bmrCost.value = ""
@@ -38,6 +54,18 @@ class bmrCalculatorViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         Log.i("bmrCalculatorViewModel", "bmrCalculatorViewModel destroyed!")
+    }
+
+    fun doneShowingSnackbarHeight() {
+        _showSnackbarHeight.value = false
+    }
+
+    fun doneShowingSnackbarWeight() {
+        _showSnackbarWeight.value = false
+    }
+
+    fun doneShowingSnackbarAge() {
+        _showSnackbarAge.value = false
     }
 
     fun setHeightString(height: String): String? {
@@ -82,6 +110,13 @@ class bmrCalculatorViewModel : ViewModel() {
                 bmrDouble.value = 66 + (13.7 * weightDouble.value.toString().toDouble()) +
                         (5 * heightDouble.value.toString().toDouble()) - (6.8 * ageInt.value.toString().toInt())
             }
+
+        }else if(statusAge == false){
+            _showSnackbarAge.value = true
+        }else if(statusHeight == false){
+            _showSnackbarHeight.value = true
+        }else if(statusWeight == false){
+            _showSnackbarWeight.value = true
         }
         bmrCost.value = String.format("%.1f", bmrDouble.value)
         return bmrDouble.value
