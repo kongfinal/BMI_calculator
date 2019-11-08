@@ -384,13 +384,13 @@ class bmiCalculatoFragment : Fragment() {
                 binding.BMICriterionText.visibility = View.VISIBLE
                 binding.BMICost.visibility = View.VISIBLE
                 binding.BMICriterionResult.visibility = View.VISIBLE
-//                databaseViewModel
-//                    .onStartCalculator(username,
-//                        viewModel.weightDouble.toString().toDouble(),
-//                        viewModel.heightDouble.toString().toDouble(),
-//                        viewModel.bmiDouble.value.toString().toDouble(),
-//                        viewModel.bmiCriterion.value.toString()
-//                    )
+                bmiDatabaseViewModel
+                    .onStartCalculator(username,
+                        viewModel.weightDouble.value.toString().toDouble(),
+                        viewModel.heightDouble.value.toString().toDouble(),
+                        viewModel.bmiDouble.value.toString().toDouble(),
+                        viewModel.bmiCriterion.value.toString()
+                    )
             }
 
         }

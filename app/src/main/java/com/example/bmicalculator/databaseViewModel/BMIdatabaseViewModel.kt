@@ -23,31 +23,25 @@ class BMIdatabaseViewModel(
     }
 
     init {
-        initializeToBmi()
+        //initializeToBmi()
     }
 
     private fun initializeToBmi() {
         uiScope.launch {
-            toBMI.value = getToBMIFromDatabase()
+            //toBMI.value = getToBMIFromDatabase()
         }
     }
 
-    private suspend fun getToBMIFromDatabase(): BMI? {
+    private suspend fun getToBMIFromDatabase(name: String): BMI? {
         return withContext(Dispatchers.IO) {
-            var bmi = database.getBmi()
-            if (bmi?.bmiCost != 0.0) {
-            bmi = null
-            }
+            var bmi = database.getBmiByName(name)
             bmi
         }
     }
 
     fun onStartResult(name : String) {
         uiScope.launch {
-            val newBMI = BMI()
-            newBMI.name = name
-            insert(newBMI)
-            toBMI.value = getToBMIFromDatabase()
+            toBMI.value = getToBMIFromDatabase(name)
         }
     }
 

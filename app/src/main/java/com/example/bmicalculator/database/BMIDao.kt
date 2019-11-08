@@ -20,8 +20,8 @@ interface BMIDao {
     @Query("DELETE FROM BMI")
     fun clear()
 
-    @Query("SELECT * FROM BMI ORDER BY BmiId DESC LIMIT 1")
-    fun getBmi(): BMI?
+    @Query("SELECT * FROM BMI WHERE name = :name")
+    fun getBmiByName(name : String): BMI?
 
     @Query("SELECT * FROM BMI ORDER BY BmiId DESC")
     fun getAllBmi(): LiveData<List<BMI>>
