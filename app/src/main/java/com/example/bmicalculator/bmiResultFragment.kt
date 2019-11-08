@@ -10,8 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import com.example.bmicalculator.database.BMIDatabase
+import com.example.bmicalculator.databaseViewModel.BMIdatabaseViewModel
+import com.example.bmicalculator.databaseViewModel.BMIdatabaseViewModelFactory
 import com.example.bmicalculator.databinding.FragmentBmiResultBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -37,6 +41,27 @@ class bmiResultFragment : Fragment() {
 
         val args = bmiResultFragmentArgs.fromBundle(arguments!!)
         username = args.name
+
+        val application = requireNotNull(this.activity).application
+
+        val dataSource = BMIDatabase.getInstance(application).BMIDao
+        val viewModelFactory = BMIdatabaseViewModelFactory(dataSource, application)
+
+        val bmiDatabaseViewModel =
+            ViewModelProviders.of(
+                this, viewModelFactory).get(BMIdatabaseViewModel::class.java)
+
+        binding.setLifecycleOwner(this)
+        binding.bmIdatabaseViewModel = bmiDatabaseViewModel
+
+        val adapter = bmiResultAdapter()
+        binding.bmiList.adapter = adapter
+
+        bmiDatabaseViewModel.Bmis.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.data = it
+            }
+        })
 
         binding.BMIButton.setChecked(true)
         binding.BMRButton.setChecked(false)

@@ -17,7 +17,7 @@ class BMIdatabaseViewModel(
 
     private var toBMI = MutableLiveData<BMI?>()
 
-    private val Bmis = database.getAllBmi()
+    val Bmis = database.getAllBmi()
     val BmisString = Transformations.map(Bmis) { bmis ->
         //formatNights(bmis, application.resources)
     }
