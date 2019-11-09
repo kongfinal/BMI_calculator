@@ -186,7 +186,7 @@
                             android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
                     <TextView
                             android:text=""
-                            android:id="@+id/weight_table1"
+                            android:id="@+id/weight_table"
                             android:layout_weight="1" android:background="#d3d3d3"
                             android:textColor="#000000"
                             android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
