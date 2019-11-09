@@ -10,8 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import com.example.bmicalculator.database.LBWDatabase
+import com.example.bmicalculator.databaseViewModel.LBWdatabaseViewModel
+import com.example.bmicalculator.databaseViewModel.LBWdatabaseViewModelFactory
 import com.example.bmicalculator.databinding.FragmentLmrResultBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -37,6 +41,27 @@ class lmrResultFragment : Fragment() {
 
         val args = lmrResultFragmentArgs.fromBundle(arguments!!)
         username = args.name
+
+        val application = requireNotNull(this.activity).application
+
+        val dataSource = LBWDatabase.getInstance(application).LBWDao
+        val viewModelFactory = LBWdatabaseViewModelFactory(dataSource, application)
+
+        val lbwDatabaseViewModel =
+            ViewModelProviders.of(
+                this, viewModelFactory).get(LBWdatabaseViewModel::class.java)
+
+        binding.setLifecycleOwner(this)
+        binding.lbWdatabaseViewModel = lbwDatabaseViewModel
+
+        val adapter = lbwResultAdapter()
+        binding.lbwList.adapter = adapter
+
+        lbwDatabaseViewModel.Lbws.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.data = it
+            }
+        })
 
         binding.BMIButton.setChecked(false)
         binding.BMRButton.setChecked(false)

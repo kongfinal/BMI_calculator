@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <TableRow
+            android:id="@+id/tableRow"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+        <TextView
+                android:id="@+id/gender_table"
+                android:layout_weight="1" android:background="#6FDCDCDC"
+                android:textColor="#000000"
+                android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
+        <TextView
+                android:text=""
+                android:id="@+id/height_table"
+                android:layout_weight="1" android:background="#dcdcdc"
+                android:textColor="#000000"
+                android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
+        <TextView
+                android:text=""
+                android:id="@+id/weight_table"
+                android:layout_weight="1" android:background="#d3d3d3"
+                android:textColor="#000000"
+                android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
+        <TextView
+                android:id="@+id/sbw_cost_table"
+                android:layout_weight="1" android:background="#cac9c9"
+                android:textColor="#000000"
+                android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
+        <TextView
+                android:text=""
+                android:id="@+id/fw_cost_table"
+                android:layout_weight="1" android:background="#B1B1B1"
+                android:textColor="#000000"
+                android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
+        <TextView
+                android:text=""
+                android:id="@+id/sbw_criterion_table"
+                android:layout_weight="1" android:background="#9C9B9B"
+                android:textColor="#000000"
+                android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
+    </TableRow>
+</LinearLayout>

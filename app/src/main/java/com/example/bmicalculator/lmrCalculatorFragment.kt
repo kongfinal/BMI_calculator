@@ -13,6 +13,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import com.example.bmicalculator.database.LBWDatabase
+import com.example.bmicalculator.databaseViewModel.LBWdatabaseViewModel
+import com.example.bmicalculator.databaseViewModel.LBWdatabaseViewModelFactory
 import com.example.bmicalculator.databinding.FragmentLmrCalculatorBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -39,6 +42,18 @@ class lmrCalculatorFragment : Fragment() {
 
         val args = lmrCalculatorFragmentArgs.fromBundle(arguments!!)
         username = args.name
+
+        val application = requireNotNull(this.activity).application
+
+        val dataSource = LBWDatabase.getInstance(application).LBWDao
+        val viewModelFactory = LBWdatabaseViewModelFactory(dataSource, application)
+
+        val lbwDatabaseViewModel =
+            ViewModelProviders.of(
+                this, viewModelFactory).get(LBWdatabaseViewModel::class.java)
+
+        binding.setLifecycleOwner(this)
+        binding.lbWdatabaseViewModel = lbwDatabaseViewModel
 
         binding.BMIButton.setChecked(false)
         binding.BMRButton.setChecked(false)
@@ -380,6 +395,15 @@ class lmrCalculatorFragment : Fragment() {
                 binding.fatWeightTailText.visibility = View.VISIBLE
                 binding.LBWHeadText.visibility = View.VISIBLE
                 binding.criterionResult.visibility = View.VISIBLE
+                lbwDatabaseViewModel
+                    .onStartCalculator(username,
+                        gender,
+                        viewModel.weightDouble.value.toString().toDouble(),
+                        viewModel.heightDouble.value.toString().toDouble(),
+                        viewModel.lbwDouble.value.toString().toDouble(),
+                        viewModel.FatCost.value.toString().toDouble(),
+                        viewModel.lbwCriterion.value.toString()
+                    )
             }
 
         }

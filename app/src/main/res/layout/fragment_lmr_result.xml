@@ -4,6 +4,12 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
 >
+    <data>
+        <variable
+                name="LBWdatabaseViewModel"
+                type="com.example.bmicalculator.databaseViewModel.LBWdatabaseViewModel" />
+    </data>
+
     <LinearLayout
                   android:orientation="vertical"
                   android:layout_width="match_parent"
@@ -16,6 +22,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" android:background="#E9E2E2"
+                    tools:context=".databaseViewModel.LBWdatabaseViewModel"
             >
                 <TextView
                         android:text="คํานวณดัชนีมวลกาย"
@@ -168,378 +175,385 @@
                             android:padding="14dip" android:gravity="center" android:textStyle="bold"
                             android:textSize="14sp" android:id="@+id/lmr_criterion"/>
                 </TableRow>
-                <TableRow
-                        android:id="@+id/tableRow1"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent">
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/lbw_list"
+                        android:layout_width="410dp"
+                        android:layout_height="420dp"
+                        android:gravity="center"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                />
+                <!--<TableRow-->
+                        <!--android:id="@+id/tableRow1"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_width="match_parent">-->
 
-                    <TextView
-                            android:id="@+id/gender_table1"
-                            android:layout_weight="1" android:background="#6FDCDCDC"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/height_table1"
-                            android:layout_weight="1" android:background="#dcdcdc"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/weight_table"
-                            android:layout_weight="1" android:background="#d3d3d3"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
-                    <TextView
-                            android:id="@+id/sbw_cost_table1"
-                            android:layout_weight="1" android:background="#cac9c9"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/fw_cost_table1"
-                            android:layout_weight="1" android:background="#B1B1B1"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/sbw_criterion_table1"
-                            android:layout_weight="1" android:background="#9C9B9B"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
-                </TableRow>
-                <TableRow
-                        android:id="@+id/tableRow2"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent">
+                    <!--<TextView-->
+                            <!--android:id="@+id/gender_table1"-->
+                            <!--android:layout_weight="1" android:background="#6FDCDCDC"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center" android:textSize="14sp"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/height_table1"-->
+                            <!--android:layout_weight="1" android:background="#dcdcdc"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center" android:textSize="14sp"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/weight_table"-->
+                            <!--android:layout_weight="1" android:background="#d3d3d3"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center" android:textSize="14sp"/>-->
+                    <!--<TextView-->
+                            <!--android:id="@+id/sbw_cost_table1"-->
+                            <!--android:layout_weight="1" android:background="#cac9c9"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center" android:textSize="14sp"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/fw_cost_table1"-->
+                            <!--android:layout_weight="1" android:background="#B1B1B1"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center" android:textSize="14sp"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/sbw_criterion_table1"-->
+                            <!--android:layout_weight="1" android:background="#9C9B9B"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center" android:textSize="14sp"/>-->
+                <!--</TableRow>-->
+                <!--<TableRow-->
+                        <!--android:id="@+id/tableRow2"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_width="match_parent">-->
 
-                    <TextView
-                            android:text=""
-                            android:id="@+id/gender_table2"
-                            android:layout_weight="1" android:background="#6FDCDCDC"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/height_table2"
-                            android:layout_weight="1" android:background="#dcdcdc"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/weight_table2"
-                            android:layout_weight="1" android:background="#d3d3d3"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/sbw_cost_table2"
-                            android:layout_weight="1" android:background="#cac9c9"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/fw_cost_table2"
-                            android:layout_weight="1" android:background="#B1B1B1"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/sbw_criterion_table2"
-                            android:layout_weight="1" android:background="#9C9B9B"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                </TableRow>
-                <TableRow
-                        android:id="@+id/tableRow3"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent">
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/gender_table2"-->
+                            <!--android:layout_weight="1" android:background="#6FDCDCDC"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center" android:textSize="14sp"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/height_table2"-->
+                            <!--android:layout_weight="1" android:background="#dcdcdc"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/weight_table2"-->
+                            <!--android:layout_weight="1" android:background="#d3d3d3"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/sbw_cost_table2"-->
+                            <!--android:layout_weight="1" android:background="#cac9c9"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/fw_cost_table2"-->
+                            <!--android:layout_weight="1" android:background="#B1B1B1"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/sbw_criterion_table2"-->
+                            <!--android:layout_weight="1" android:background="#9C9B9B"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                <!--</TableRow>-->
+                <!--<TableRow-->
+                        <!--android:id="@+id/tableRow3"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_width="match_parent">-->
 
-                    <TextView
-                            android:text=""
-                            android:id="@+id/gender_table3"
-                            android:layout_weight="1" android:background="#6FDCDCDC"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/height_table3"
-                            android:layout_weight="1" android:background="#dcdcdc"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/weight_table3"
-                            android:layout_weight="1" android:background="#d3d3d3"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/sbw_cost_table3"
-                            android:layout_weight="1" android:background="#cac9c9"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/fw_cost_table3"
-                            android:layout_weight="1" android:background="#B1B1B1"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/sbw_criterion_table3"
-                            android:layout_weight="1" android:background="#9C9B9B"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                </TableRow>
-                <TableRow
-                        android:id="@+id/tableRow4"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent">
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/gender_table3"-->
+                            <!--android:layout_weight="1" android:background="#6FDCDCDC"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center" android:textSize="14sp"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/height_table3"-->
+                            <!--android:layout_weight="1" android:background="#dcdcdc"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/weight_table3"-->
+                            <!--android:layout_weight="1" android:background="#d3d3d3"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/sbw_cost_table3"-->
+                            <!--android:layout_weight="1" android:background="#cac9c9"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/fw_cost_table3"-->
+                            <!--android:layout_weight="1" android:background="#B1B1B1"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/sbw_criterion_table3"-->
+                            <!--android:layout_weight="1" android:background="#9C9B9B"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                <!--</TableRow>-->
+                <!--<TableRow-->
+                        <!--android:id="@+id/tableRow4"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_width="match_parent">-->
 
-                    <TextView
-                            android:text=""
-                            android:id="@+id/gender_table4"
-                            android:layout_weight="1" android:background="#6FDCDCDC"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/height_table4"
-                            android:layout_weight="1" android:background="#dcdcdc"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/weight_table4"
-                            android:layout_weight="1" android:background="#d3d3d3"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/sbw_cost_table4"
-                            android:layout_weight="1" android:background="#cac9c9"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/fw_cost_table4"
-                            android:layout_weight="1" android:background="#B1B1B1"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/sbw_criterion_table4"
-                            android:layout_weight="1" android:background="#9C9B9B"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                </TableRow>
-                <TableRow
-                        android:id="@+id/tableRow5"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent">
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/gender_table4"-->
+                            <!--android:layout_weight="1" android:background="#6FDCDCDC"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center" android:textSize="14sp"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/height_table4"-->
+                            <!--android:layout_weight="1" android:background="#dcdcdc"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/weight_table4"-->
+                            <!--android:layout_weight="1" android:background="#d3d3d3"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/sbw_cost_table4"-->
+                            <!--android:layout_weight="1" android:background="#cac9c9"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/fw_cost_table4"-->
+                            <!--android:layout_weight="1" android:background="#B1B1B1"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/sbw_criterion_table4"-->
+                            <!--android:layout_weight="1" android:background="#9C9B9B"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                <!--</TableRow>-->
+                <!--<TableRow-->
+                        <!--android:id="@+id/tableRow5"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_width="match_parent">-->
 
-                    <TextView
-                            android:text=""
-                            android:id="@+id/gender_table5"
-                            android:layout_weight="1" android:background="#6FDCDCDC"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/height_table5"
-                            android:layout_weight="1" android:background="#dcdcdc"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/weight_table5"
-                            android:layout_weight="1" android:background="#d3d3d3"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/sbw_cost_table5"
-                            android:layout_weight="1" android:background="#cac9c9"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/fw_cost_table5"
-                            android:layout_weight="1" android:background="#B1B1B1"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/sbw_criterion_table5"
-                            android:layout_weight="1" android:background="#9C9B9B"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                </TableRow>
-                <TableRow
-                        android:id="@+id/tableRow6"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent">
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/gender_table5"-->
+                            <!--android:layout_weight="1" android:background="#6FDCDCDC"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center" android:textSize="14sp"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/height_table5"-->
+                            <!--android:layout_weight="1" android:background="#dcdcdc"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/weight_table5"-->
+                            <!--android:layout_weight="1" android:background="#d3d3d3"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/sbw_cost_table5"-->
+                            <!--android:layout_weight="1" android:background="#cac9c9"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/fw_cost_table5"-->
+                            <!--android:layout_weight="1" android:background="#B1B1B1"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/sbw_criterion_table5"-->
+                            <!--android:layout_weight="1" android:background="#9C9B9B"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                <!--</TableRow>-->
+                <!--<TableRow-->
+                        <!--android:id="@+id/tableRow6"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_width="match_parent">-->
 
-                    <TextView
-                            android:text=""
-                            android:id="@+id/gender_table6"
-                            android:layout_weight="1" android:background="#6FDCDCDC"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/height_table6"
-                            android:layout_weight="1" android:background="#dcdcdc"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/weight_table6"
-                            android:layout_weight="1" android:background="#d3d3d3"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/sbw_cost_table6"
-                            android:layout_weight="1" android:background="#cac9c9"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/fw_cost_table6"
-                            android:layout_weight="1" android:background="#B1B1B1"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/sbw_criterion_table6"
-                            android:layout_weight="1" android:background="#9C9B9B"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                </TableRow>
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/gender_table6"-->
+                            <!--android:layout_weight="1" android:background="#6FDCDCDC"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center" android:textSize="14sp"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/height_table6"-->
+                            <!--android:layout_weight="1" android:background="#dcdcdc"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/weight_table6"-->
+                            <!--android:layout_weight="1" android:background="#d3d3d3"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/sbw_cost_table6"-->
+                            <!--android:layout_weight="1" android:background="#cac9c9"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/fw_cost_table6"-->
+                            <!--android:layout_weight="1" android:background="#B1B1B1"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/sbw_criterion_table6"-->
+                            <!--android:layout_weight="1" android:background="#9C9B9B"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                <!--</TableRow>-->
 
-                <TableRow
-                        android:id="@+id/tableRow7"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent">
+                <!--<TableRow-->
+                        <!--android:id="@+id/tableRow7"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_width="match_parent">-->
 
-                    <TextView
-                            android:text=""
-                            android:id="@+id/gender_table7"
-                            android:layout_weight="1" android:background="#6FDCDCDC"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/height_table7"
-                            android:layout_weight="1" android:background="#dcdcdc"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/weight_table7"
-                            android:layout_weight="1" android:background="#d3d3d3"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/sbw_cost_table7"
-                            android:layout_weight="1" android:background="#cac9c9"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/fw_cost_table7"
-                            android:layout_weight="1" android:background="#B1B1B1"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/sbw_criterion_table7"
-                            android:layout_weight="1" android:background="#9C9B9B"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                </TableRow>
-                <TableRow
-                        android:id="@+id/tableRow8"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent">
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/gender_table7"-->
+                            <!--android:layout_weight="1" android:background="#6FDCDCDC"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center" android:textSize="14sp"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/height_table7"-->
+                            <!--android:layout_weight="1" android:background="#dcdcdc"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/weight_table7"-->
+                            <!--android:layout_weight="1" android:background="#d3d3d3"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/sbw_cost_table7"-->
+                            <!--android:layout_weight="1" android:background="#cac9c9"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/fw_cost_table7"-->
+                            <!--android:layout_weight="1" android:background="#B1B1B1"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/sbw_criterion_table7"-->
+                            <!--android:layout_weight="1" android:background="#9C9B9B"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                <!--</TableRow>-->
+                <!--<TableRow-->
+                        <!--android:id="@+id/tableRow8"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_width="match_parent">-->
 
-                    <TextView
-                            android:text=""
-                            android:id="@+id/gender_table8"
-                            android:layout_weight="1" android:background="#6FDCDCDC"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/height_table8"
-                            android:layout_weight="1" android:background="#dcdcdc"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/weight_table8"
-                            android:layout_weight="1" android:background="#d3d3d3"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/sbw_cost_table8"
-                            android:layout_weight="1" android:background="#cac9c9"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/fw_cost_table8"
-                            android:layout_weight="1" android:background="#B1B1B1"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:text=""
-                            android:id="@+id/sbw_criterion_table8"
-                            android:layout_weight="1" android:background="#9C9B9B"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                </TableRow>
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/gender_table8"-->
+                            <!--android:layout_weight="1" android:background="#6FDCDCDC"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center" android:textSize="14sp"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/height_table8"-->
+                            <!--android:layout_weight="1" android:background="#dcdcdc"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/weight_table8"-->
+                            <!--android:layout_weight="1" android:background="#d3d3d3"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/sbw_cost_table8"-->
+                            <!--android:layout_weight="1" android:background="#cac9c9"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/fw_cost_table8"-->
+                            <!--android:layout_weight="1" android:background="#B1B1B1"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:text=""-->
+                            <!--android:id="@+id/sbw_criterion_table8"-->
+                            <!--android:layout_weight="1" android:background="#9C9B9B"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                <!--</TableRow>-->
 
-                <TableRow
-                        android:id="@+id/tableRow9"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent">
+                <!--<TableRow-->
+                        <!--android:id="@+id/tableRow9"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_width="match_parent">-->
 
-                    <TextView
-                            android:id="@+id/gender_table9"
-                            android:layout_weight="1" android:background="#6FDCDCDC"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center" android:textSize="14sp"/>
-                    <TextView
-                            android:id="@+id/height_table9"
-                            android:layout_weight="1" android:background="#dcdcdc"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:id="@+id/weight_table9"
-                            android:layout_weight="1" android:background="#d3d3d3"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:id="@+id/sbw_cost_table9"
-                            android:layout_weight="1" android:background="#cac9c9"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:id="@+id/fw_cost_table9"
-                            android:layout_weight="1" android:background="#B1B1B1"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                    <TextView
-                            android:id="@+id/sbw_criterion_table9"
-                            android:layout_weight="1" android:background="#9C9B9B"
-                            android:textColor="#000000"
-                            android:padding="14dip" android:gravity="center"/>
-                </TableRow>
+                    <!--<TextView-->
+                            <!--android:id="@+id/gender_table9"-->
+                            <!--android:layout_weight="1" android:background="#6FDCDCDC"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center" android:textSize="14sp"/>-->
+                    <!--<TextView-->
+                            <!--android:id="@+id/height_table9"-->
+                            <!--android:layout_weight="1" android:background="#dcdcdc"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:id="@+id/weight_table9"-->
+                            <!--android:layout_weight="1" android:background="#d3d3d3"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:id="@+id/sbw_cost_table9"-->
+                            <!--android:layout_weight="1" android:background="#cac9c9"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:id="@+id/fw_cost_table9"-->
+                            <!--android:layout_weight="1" android:background="#B1B1B1"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                    <!--<TextView-->
+                            <!--android:id="@+id/sbw_criterion_table9"-->
+                            <!--android:layout_weight="1" android:background="#9C9B9B"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:padding="14dip" android:gravity="center"/>-->
+                <!--</TableRow>-->
             </TableLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
         <LinearLayout

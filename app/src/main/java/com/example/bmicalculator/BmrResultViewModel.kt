@@ -1,7 +1,9 @@
 package com.example.bmicalculator
 
 import android.util.Log
+import android.widget.TextView
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.RecyclerView
 
 class BmrResultViewModel : ViewModel() {
 
@@ -14,3 +16,5 @@ class BmrResultViewModel : ViewModel() {
         Log.i("BmrResultViewModel", "BmrResultViewModel destroyed!")
     }
 }
+
+class TextItemViewHolderBmr(val textView: TextView): RecyclerView.ViewHolder(textView)

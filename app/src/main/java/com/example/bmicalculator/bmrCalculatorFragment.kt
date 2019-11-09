@@ -13,6 +13,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import com.example.bmicalculator.database.BMRDatabase
+import com.example.bmicalculator.databaseViewModel.BMRdatabaseViewModel
+import com.example.bmicalculator.databaseViewModel.BMRdatabaseViewModelFactory
 import com.example.bmicalculator.databinding.FragmentBmrCalculatorBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -29,6 +32,7 @@ class bmrCalculatorFragment : Fragment() {
 
     private lateinit var viewModel: bmrCalculatorViewModel
     private var username = ""
+    //private var gender = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<FragmentBmrCalculatorBinding>(inflater,
@@ -36,6 +40,18 @@ class bmrCalculatorFragment : Fragment() {
 
         val args = bmrCalculatorFragmentArgs.fromBundle(arguments!!)
         username = args.name
+
+        val application = requireNotNull(this.activity).application
+
+        val dataSource = BMRDatabase.getInstance(application).BMRDao
+        val viewModelFactory = BMRdatabaseViewModelFactory(dataSource, application)
+
+        val bmrDatabaseViewModel =
+            ViewModelProviders.of(
+                this, viewModelFactory).get(BMRdatabaseViewModel::class.java)
+
+        binding.setLifecycleOwner(this)
+        binding.bmRdatabaseViewModel = bmrDatabaseViewModel
 
         Log.i("bmrCalculatorViewModel", "Called ViewModelProviders.of")
         viewModel = ViewModelProviders.of(this).get(bmrCalculatorViewModel::class.java)
@@ -495,6 +511,14 @@ class bmrCalculatorFragment : Fragment() {
                 binding.BMRHeadText.visibility = View.VISIBLE
                 binding.BMRTailText.visibility = View.VISIBLE
                 binding.BMRCost.visibility = View.VISIBLE
+                bmrDatabaseViewModel
+                    .onStartCalculator(username,
+                        gender,
+                        viewModel.ageInt.value.toString().toInt(),
+                        viewModel.weightDouble.value.toString().toDouble(),
+                        viewModel.heightDouble.value.toString().toDouble(),
+                        viewModel.bmrDouble.value.toString().toDouble()
+                    )
             }
         }
 
