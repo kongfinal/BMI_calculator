@@ -14,28 +14,41 @@ class bmiResultAdapter: RecyclerView.Adapter<bmiResultAdapter.ViewHolder>() {
             notifyDataSetChanged()
         }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView){
         val height: TextView = itemView.findViewById(R.id.height_table)
         val weight: TextView = itemView.findViewById(R.id.weight_table)
         val bmiCost: TextView = itemView.findViewById(R.id.bmi_cost_table)
         val bmiCriterion: TextView = itemView.findViewById(R.id.bmi_criterion_table)
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val view = layoutInflater.inflate(R.layout.list_item_bmi, parent, false)
+                return ViewHolder(view)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.list_item_bmi, parent, false)
-        return ViewHolder(view)
+        return ViewHolder.from(parent)
     }
 
     override fun getItemCount() = data.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
-        val res = holder.itemView.context.resources
-        holder.height.text = item.height.toString()
-        holder.weight.text = item.weight.toString()
-        holder.bmiCost.text = String.format("%.2f", item.bmiCost)
-        holder.bmiCriterion.text = item.bmiCriterion
+        holder.bindBMI(item)
     }
+
+    private fun ViewHolder.bindBMI(
+        item: BMI
+    ) {
+        val res = itemView.context.resources
+        height.text = item.height.toString()
+        weight.text = item.weight.toString()
+        bmiCost.text = String.format("%.2f", item.bmiCost)
+        bmiCriterion.text = item.bmiCriterion
+    }
+
+
 
 }

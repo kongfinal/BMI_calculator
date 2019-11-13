@@ -134,7 +134,7 @@
                             app:layout_constraintStart_toEndOf="@+id/LBW_head_text" android:layout_marginStart="8dp"
                             android:layout_marginLeft="8dp"/>
                     <TextView
-                            android:text="คุณอยู่ในเกณฑ์ :"
+                            android:text="@string/criterion_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/LBW_head_text" android:textSize="18sp"
@@ -152,7 +152,7 @@
                             app:layout_constraintStart_toEndOf="@+id/SBW_head_text" android:layout_marginLeft="8dp"
                             android:layout_marginStart="8dp"/>
                     <TextView
-                            android:text="น้ำหนักร่างกายมาตรฐาน :"
+                            android:text="@string/sbw_head_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/SBW_head_text" android:textSize="18sp"
@@ -162,7 +162,7 @@
                             app:layout_constraintBaseline_toBaselineOf="@+id/SBW_cost_text"
                             android:visibility="invisible"/>
                     <TextView
-                            android:text="กิโลกรัม"
+                            android:text="@string/sbw_tail_text"
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
                             android:id="@+id/SBW_tail_text" android:textSize="18sp"
@@ -171,7 +171,7 @@
                             app:layout_constraintStart_toEndOf="@+id/SBW_cost_text" android:layout_marginStart="8dp"
                             android:layout_marginLeft="8dp" android:visibility="invisible"/>
                     <TextView
-                            android:text="น้ำหนักไขมัน :"
+                            android:text="@string/Fat_head_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/FatWeight_head_text" android:textSize="18sp"
@@ -198,14 +198,19 @@
 
                     <Switch
                             android:layout_width="wrap_content"
-                            android:layout_height="0dp"
+                            android:layout_height="wrap_content"
                             android:id="@+id/gender_button"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textOn="@string/male"
+                            android:textOff="@string/female"
+                            android:layout_gravity="center"
+                            app:switchMinWidth="100dp"
                             android:capitalize="none"
                             android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/edit_height"
                             app:layout_constraintStart_toEndOf="@+id/gender_head_text" android:layout_marginStart="8dp"
                             android:layout_marginLeft="8dp" android:layout_marginEnd="32dp"
-                            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="32dp"/>
+                            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="32dp"
+                    />
                     <TextView
                             android:layout_width="63dp"
                             android:layout_height="29dp"
@@ -271,6 +276,25 @@
                             android:layout_marginRight="16dp" android:layout_marginBottom="16dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             android:focusable="false"/>
+                    <TextView
+                            android:text="@string/male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/male_gander_text"
+                            android:textStyle="bold"
+                            android:textColor="#3F51B5"
+                            app:layout_constraintBaseline_toBaselineOf="@+id/gender_button"
+                            app:layout_constraintEnd_toStartOf="@+id/gender_button"
+                            android:layout_marginEnd="16dp" android:layout_marginRight="16dp"/>
+                    <TextView
+                            android:text="@string/female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textColor="#E91E63"
+                            android:id="@+id/textView10" app:layout_constraintStart_toEndOf="@+id/gender_button"
+                            android:layout_marginLeft="16dp" android:layout_marginStart="16dp"
+                            app:layout_constraintBaseline_toBaselineOf="@+id/gender_button"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
             <Button

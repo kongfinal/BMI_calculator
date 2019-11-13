@@ -74,7 +74,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                         <TextView
-                                android:text="ร่างกายคุณต้องการพลังงาน :"
+                                android:text="@string/bmr_head_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/BMR_head_text"
@@ -92,7 +92,7 @@
                                 android:layout_marginStart="8dp" android:textSize="18sp" android:textColor="#E91E63"
                                 android:textStyle="bold" android:visibility="invisible"/>
                         <TextView
-                                android:text="แคลอรี่/วัน"
+                                android:text="@string/bmr_tail_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/BMR_tail_text"
@@ -223,6 +223,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
                                 android:id="@+id/gender_button"
+                                android:layout_gravity="center"
                                 app:layout_constraintBottom_toTopOf="@+id/edit_age" android:layout_marginBottom="8dp"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -232,6 +233,25 @@
                                 android:capitalize="none" android:textOff="ชาย" android:textOn="หญิง"
                                 android:textColorHint="#3F51B5" android:textColor="#3F51B5"
                                 android:textIsSelectable="false"/>
+                        <TextView
+                                android:text="@string/male"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/male_gander_text"
+                                android:textStyle="bold"
+                                android:textColor="#3F51B5"
+                                app:layout_constraintBaseline_toBaselineOf="@+id/gender_button"
+                                app:layout_constraintEnd_toStartOf="@+id/gender_button"
+                                android:layout_marginEnd="16dp" android:layout_marginRight="16dp"/>
+                        <TextView
+                                android:text="@string/female"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="#E91E63"
+                                android:id="@+id/textView10" app:layout_constraintStart_toEndOf="@+id/gender_button"
+                                android:layout_marginLeft="16dp" android:layout_marginStart="16dp"
+                                app:layout_constraintBaseline_toBaselineOf="@+id/gender_button"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
                 <Button

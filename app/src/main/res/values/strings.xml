@@ -1,7 +1,17 @@
 <resources>
-    <string name="app_name">NAME</string>
+    <string name="app_name">BMI_Calculator</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="edit_name">NAME</string>
+    <string name="bmi_text">ค่าดัชนีมวลกาย :</string>
+    <string name="bmr_head_text">ร่างกายคุณต้องการพลังงาน :</string>
+    <string name="bmr_tail_text">แคลอรี่/วัน</string>
+    <string name="sbw_head_text">น้ำหนักร่างกายมาตรฐาน :</string>
+    <string name="sbw_tail_text">กิโลกรัม</string>
+    <string name="Fat_head_text">น้ำหนักไขมัน :</string>
+    <string name="criterion_text">คุณอยู่ในเกณฑ์ :</string>
+    <string name="male">ชาย</string>
+    <string name="female">หญิง</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="share_bmi_text">ค่าดัชนีมวลกาย : %1$s \nคุณอยู่ในเกณฑ์ : %2$s!</string>
     <string name="share_bmr_text">ร่างกายคุณต้องการพลังงาน : %1$s แคลอรี่/วัน</string>
